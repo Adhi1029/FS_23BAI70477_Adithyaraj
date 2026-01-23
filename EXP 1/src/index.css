@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+  background-color: #1e293b;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+/* Page Card */
+.page {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Page Colors */
+.home {
+  background-color: #e0f2fe;
+}
+
+.about {
+  background-color: #ecfeff;
+}
+
+.contact {
+  background-color: #fef3c7;
+}
+
+/* Text */
+.page h1 {
+  margin-bottom: 15px;
+  color: #0f172a;
+}
+
+.page p {
+  font-size: 16px;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
