@@ -12,8 +12,7 @@ import { Link } from "react-router-dom";
 function Analytics() {
   return (
     <>
-      {/* NAVBAR */}
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" className="w-100">
         <Container fluid>
           <Navbar.Brand>Admin Dashboard</Navbar.Brand>
           <Navbar.Toggle />
@@ -26,7 +25,7 @@ function Analytics() {
         </Container>
       </Navbar>
 
-      <Container fluid className="mt-4 px-4">
+      <Container fluid className="px-4 py-4">
         <h2>Analytics Overview</h2>
 
         <Row className="g-4 mt-3">

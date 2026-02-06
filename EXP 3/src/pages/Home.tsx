@@ -18,8 +18,8 @@ function Home() {
 
   return (
     <>
-      {/* NAVBAR */}
-      <Navbar bg="dark" variant="dark" expand="lg">
+      {/* FULL WIDTH NAVBAR */}
+      <Navbar bg="dark" variant="dark" expand="lg" className="w-100">
         <Container fluid>
           <Navbar.Brand>Admin Dashboard</Navbar.Brand>
           <Navbar.Toggle />
@@ -32,13 +32,14 @@ function Home() {
         </Container>
       </Navbar>
 
-      <Container fluid className="mt-4 px-4">
+      {/* FULL WIDTH CONTENT */}
+      <Container fluid className="px-4 py-4">
 
-        {/* DASHBOARD CARDS */}
+        {/* CARDS */}
         <Row className="g-4">
           {["Users", "Orders", "Revenue", "Products"].map((item, index) => (
             <Col xs={12} md={6} lg={3} key={index}>
-              <Card className="shadow-sm">
+              <Card className="shadow-sm h-100">
                 <Card.Body>
                   <Card.Title>{item}</Card.Title>
                   <Card.Text className="fs-4 fw-bold text-primary">
@@ -50,9 +51,9 @@ function Home() {
           ))}
         </Row>
 
-        {/* USER TABLE */}
+        {/* TABLE */}
         <h3 className="mt-5">User Table</h3>
-        <Table striped bordered hover responsive>
+        <Table striped bordered hover responsive className="w-100">
           <thead>
             <tr>
               <th>ID</th>
@@ -74,7 +75,7 @@ function Home() {
           </tbody>
         </Table>
 
-        {/* LOGIN FORM */}
+        {/* FORM */}
         <h3 className="mt-5">Login Form</h3>
         <Form>
           <Form.Group className="mb-3">
@@ -92,14 +93,13 @@ function Home() {
           </Button>
         </Form>
 
-        {/* MODAL BUTTON */}
+        {/* MODAL */}
         <div className="mt-4">
           <Button variant="success" onClick={() => setShow(true)}>
             Open Modal
           </Button>
         </div>
 
-        {/* MODAL */}
         <Modal show={show} onHide={() => setShow(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Confirmation</Modal.Title>
