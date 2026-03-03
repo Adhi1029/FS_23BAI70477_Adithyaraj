@@ -1,16 +1,53 @@
-# React + Vite
+## EXPERIMENT 5: Advanced State Management, Context API, and Performance Optimization
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Objectives
+1. Learn structured, scalable state management using **Redux Toolkit**.
+2. Use **Context API** for app-wide concerns (e.g., theme, auth, or profile).
+3. Optimize derived calculations using **`useMemo`**.
+4. Extend a multi-page React app while maintaining consistent UI/UX.
 
-Currently, two official plugins are available:
+### Description
+Building upon previous experiments, this update enhances the existing application by replacing standard state management with Redux Toolkit for complex data flows. It introduces a global Context API for overarching app properties and utilizes `useMemo` to prevent unnecessary re-rendering of derived data computations. Additionally, a new dedicated page is integrated using React Router to demonstrate these combined features.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Technologies & Concepts Used
+* **Redux Toolkit:** `configureStore`, `createSlice`, `useDispatch`, `useSelector`
+* **Context API:** `createContext`, `useContext`
+* **Performance Hooks:** `useMemo`
+* **Routing:** React Router DOM
+* Vercel (Deployment)
 
-## React Compiler
+### Features Implemented
+* **React Router Integration:** Navigation across at least 3 pages (including one brand new page added for this experiment).
+* **Global Context:** App-wide context provider implemented to manage overarching state (e.g., light/dark theme toggle or user profile).
+* **Redux Toolkit State Management:** Configured a centralized store with at least one slice containing 3+ reducer actions (e.g., `addItem`, `removeItem`, `updateQty`).
+* **Performance Optimization:** Implemented `useMemo` for derived data optimization (e.g., calculating total cart price or filtering lists) to ensure re-computations only occur when specific dependencies change.
+* **Responsive UI:** Clean, modern layout maintained consistently across desktop and mobile.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Recommended Folder Structure
+```text
+src/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── ThemeToggle.jsx
+│   ├── CardComponent.jsx
+│   └── FilterBar.jsx
+│
+├── context/
+│   └── AppContext.jsx
+│
+├── redux/
+│   ├── store.js
+│   └── slices/
+│       └── appSlice.js        # (e.g., cartSlice.js / taskSlice.js)
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── Projects.jsx           # From Experiment 3
+│   ├── Analytics.jsx          # From Experiment 4
+│   └── Reports.jsx            # ✅ New page for Experiment 5
+│
+├── App.jsx
+├── main.jsx
+└── index.css
