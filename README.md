@@ -1,11 +1,11 @@
-# Full Stack Development Lab – React Experiments
+# Full Stack Development Lab – React & Spring Boot Experiments
 
 **Student Name:** Adithyaraj  
 **Register Number:** 23BAI70477  
 **Course:** Full Stack Development Lab  
 **Repository:** FS_23BAI70477_Adithyaraj  
 
-This repository contains a series of experiments demonstrating modern frontend development using React, SPA architecture, UI libraries, routing, and advanced state management.
+This repository contains a series of experiments demonstrating modern frontend development using React, SPA architecture, UI libraries, routing, advanced state management, and backend API security using Spring Boot.
 
 ---
 
@@ -55,47 +55,58 @@ The SPA architecture enables seamless navigation without page reloads, improving
 4. Extend a multi-page React app while maintaining consistent UI/UX.
 
 ### Description
-Building upon previous experiments, this update enhances the existing application by replacing standard state management with Redux Toolkit for complex data flows.  It introduces a global Context API for overarching app properties and utilizes `useMemo` to prevent unnecessary re-rendering of derived data computations. Additionally, a new dedicated page is integrated using React Router to demonstrate these combined features.
+Building upon previous experiments, this update enhances the existing application by replacing standard state management with Redux Toolkit for complex data flows. It introduces a global Context API for overarching app properties and utilizes `useMemo` to prevent unnecessary re-rendering of derived data computations. Additionally, a new dedicated page is integrated using React Router to demonstrate these combined features.
 
 ### Technologies & Concepts Used
 * **Redux Toolkit:** `configureStore`, `createSlice`, `useDispatch`, `useSelector`
 * **Context API:** `createContext`, `useContext`
-* **Performance Hooks:** `useMemo`
-* **Routing:** React Router DOM
-* Vercel (Deployment)
+
+---
+
+## EXPERIMENT 6: Backend Security and JWT Authentication
+
+### Objectives
+1. Implement JWT (JSON Web Token) Authentication in a backend application.
+2. Manage user sessions statelessly using Spring Security.
+3. Understand how to use Postman for testing authentication processes and API endpoints.
+4. Learn about session management and cryptographic token validation in web applications.
+
+### Description
+This experiment transitions from frontend development to backend security by implementing a robust Authentication and Authorization system using **Spring Boot (Java)**. The application features a custom `JwtFilter` middleware that intercepts incoming HTTP requests. 
+
+For testing and demonstration purposes, the `/login` route bypasses strict database validation—accepting any credentials—to immediately generate and sign an `HMAC-SHA` JWT token. This token must then be passed as a `Bearer` token in the `Authorization` header to successfully access the `/protected` route, demonstrating stateless session management.
+
+### Technologies Used
+* **Java 17+** & **Maven**
+* **Spring Boot 3** (Spring Web, Spring Data JPA)
+* **Spring Security 6+** (Stateless SecurityFilterChain)
+* **JJWT (0.11.2)** (JSON Web Token library)
+* **H2 Database** (In-memory database)
+* **Postman** (API Testing)
 
 ### Features Implemented
-* **React Router Integration:** Navigation across at least 3 pages (including one brand new page added for this experiment).
-* **Global Context:** App-wide context provider implemented to manage overarching state (e.g., light/dark theme toggle or user profile).
-* **Redux Toolkit State Management:** Configured a centralized store with at least one slice containing 3+ reducer actions (e.g., `addItem`, `removeItem`, `updateQty`).
-* **Performance Optimization:** Implemented `useMemo` for derived data optimization (e.g., calculating total cart price or filtering lists) to ensure re-computations only occur when specific dependencies change.
-* **Responsive UI:** Clean, modern layout maintained consistently across desktop and mobile.
+* **Stateless Authentication:** Server runs on Port 5000 with a strictly stateless session policy.
+* **Token Generation:** `JwtUtil` class to generate and sign JWTs upon a `POST` request to `/login`.
+* **Middleware Interception:** `JwtFilter` implementation to extract and validate tokens from request headers.
+* **Route Protection:** Public access granted to `/login` and `/h2-console`, while `/protected` requires a valid cryptographic token.
 
-### Recommended Folder Structure
-```text
-src/
-│
-├── components/
-│   ├── Navbar.jsx
-│   ├── Footer.jsx
-│   ├── ThemeToggle.jsx
-│   ├── CardComponent.jsx
-│   └── FilterBar.jsx
-│
-├── context/
-│   └── AppContext.jsx
-│
-├── redux/
-│   ├── store.js
-│   └── slices/
-│       └── appSlice.js        # (e.g., cartSlice.js / taskSlice.js)
-│
-├── pages/
-│   ├── Home.jsx
-│   ├── Projects.jsx           # From Experiment 3
-│   ├── Analytics.jsx          # From Experiment 4
-│   └── Reports.jsx            # ✅ New page for Experiment 5
-│
-├── App.jsx
-├── main.jsx
-└── index.css
+### 📸 Postman Testing & Screenshots
+
+The following screenshots demonstrate the API functionality and token validation process:
+
+#### 1. Successful Login Request & Token Generation
+*(Shows a POST request to `http://localhost:5000/login` receiving the JWT token)*
+> **[INSERT YOUR SCREENSHOT 1 HERE]**
+
+#### 2. Accessing Protected Route (Authorized)
+*(Shows a GET request to `http://localhost:5000/protected` using the `Authorization: Bearer <token>` header)*
+> **[INSERT YOUR SCREENSHOT 2 HERE]**
+
+#### 3. Token Invalidation / Unauthorized Access
+*(Shows a GET request to `http://localhost:5000/protected` without a token, returning a `403 Forbidden` error)*
+> **[INSERT YOUR SCREENSHOT 3 HERE]**
+
+### How to Run Locally
+1. Navigate to the `EXP 6` directory.
+2. Ensure Maven is installed and run: `mvn clean compile` followed by `mvn spring-boot:run`.
+3. The server will start on `http://localhost:5000`.
