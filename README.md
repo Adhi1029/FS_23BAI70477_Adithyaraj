@@ -3,9 +3,18 @@
 **Student Name:** Adithyaraj  
 **Register Number:** 23BAI70477  
 **Course:** Full Stack Development Lab  
-**Repository:** FS_23BAI70477_Adithyaraj  
+**Repository:** [FS_23BAI70477_Adithyaraj](https://github.com/Adhi1029/FS_23BAI70477_Adithyaraj)  
 
 This repository contains a series of experiments demonstrating modern frontend development using React, SPA architecture, UI libraries, routing, advanced state management, and backend API security using Spring Boot.
+
+---
+
+## 🚀 Live Deployments
+* **Experiment 1:** [Deployment Link](https://23-bai-70477-adithyarajexp1.vercel.app/)
+* **Experiment 2:** [Deployment Link](https://23-bai-70477-adithyarajexp2.vercel.app/)
+* **Experiment 3:** [Deployment Link](https://23-bai-70477-adithyarajexp3.vercel.app/)
+* **Experiment 5:** [Deployment Link](https://fs-23-bai-70477-adithyaraj-exp5.vercel.app/)
+* **Main App:** [Deployment Link](https://fs-23-bai-70477-adithyaraj.vercel.app/)
 
 ---
 
@@ -21,13 +30,11 @@ This repository contains a series of experiments demonstrating modern frontend d
 7. Deploy SPA to a hosting platform
 
 ### Description
-This experiment introduces React as a modern frontend framework and demonstrates how to build a Single Page Application (SPA). The application uses reusable components, manages state efficiently, and integrates external APIs for dynamic content. 
-The SPA architecture enables seamless navigation without page reloads, improving performance and user experience.
+This experiment introduces React as a modern frontend framework and demonstrates how to build a Single Page Application (SPA). The application uses reusable components, manages state efficiently, and integrates external APIs for dynamic content. The SPA architecture enables seamless navigation without page reloads, improving performance and user experience.
 
 ### Technologies Used
 * React.js
-* Node.js
-* npm
+* Node.js & npm
 * JavaScript (ES6+)
 * HTML5 & CSS3
 * Vite
@@ -37,8 +44,7 @@ The SPA architecture enables seamless navigation without page reloads, improving
 * Component-based architecture
 * React Hooks (`useState`, `useEffect`)
 * API data fetching
-* SPA navigation
-* Responsive UI
+* SPA navigation & Responsive UI
 * Deployment on Vercel
 
 ### Learning Outcomes
@@ -72,17 +78,17 @@ Building upon previous experiments, this update enhances the existing applicatio
 4. Learn about session management and cryptographic token validation in web applications.
 
 ### Description
-This experiment transitions from frontend development to backend security by implementing a robust Authentication and Authorization system using **Spring Boot (Java)**. The application features a custom `JwtFilter` middleware that intercepts incoming HTTP requests. 
+This experiment transitions from frontend development to backend security by implementing a robust Authentication and Authorization system using Spring Boot (Java). The application features a custom `JwtFilter` middleware that intercepts incoming HTTP requests. 
 
-For testing and demonstration purposes, the `/login` route bypasses strict database validation—accepting any credentials—to immediately generate and sign an `HMAC-SHA` JWT token. This token must then be passed as a `Bearer` token in the `Authorization` header to successfully access the `/protected` route, demonstrating stateless session management.
+For testing and demonstration purposes, the `/login` route bypasses strict database validation—accepting any credentials—to immediately generate and sign an HMAC-SHA JWT token. This token must then be passed as a `Bearer` token in the `Authorization` header to successfully access the `/protected` route, demonstrating stateless session management.
 
 ### Technologies Used
-* **Java 17+** & **Maven**
-* **Spring Boot 3** (Spring Web, Spring Data JPA)
-* **Spring Security 6+** (Stateless SecurityFilterChain)
-* **JJWT (0.11.2)** (JSON Web Token library)
-* **H2 Database** (In-memory database)
-* **Postman** (API Testing)
+* Java 17+ & Maven
+* Spring Boot 3 (Spring Web, Spring Data JPA)
+* Spring Security 6+ (Stateless SecurityFilterChain)
+* JJWT (0.11.2) (JSON Web Token library)
+* H2 Database (In-memory database)
+* Postman (API Testing)
 
 ### Features Implemented
 * **Stateless Authentication:** Server runs on Port 5000 with a strictly stateless session policy.
@@ -90,23 +96,40 @@ For testing and demonstration purposes, the `/login` route bypasses strict datab
 * **Middleware Interception:** `JwtFilter` implementation to extract and validate tokens from request headers.
 * **Route Protection:** Public access granted to `/login` and `/h2-console`, while `/protected` requires a valid cryptographic token.
 
-### 📸 Postman Testing & Screenshots
-
-The following screenshots demonstrate the API functionality and token validation process:
-
-#### 1. Successful Login Request & Token Generation
-*(Shows a POST request to `http://localhost:5000/login` receiving the JWT token)*
-> **[INSERT YOUR SCREENSHOT 1 HERE]**
-
-#### 2. Accessing Protected Route (Authorized)
-*(Shows a GET request to `http://localhost:5000/protected` using the `Authorization: Bearer <token>` header)*
-> **[INSERT YOUR SCREENSHOT 2 HERE]**
-
-#### 3. Token Invalidation / Unauthorized Access
-*(Shows a GET request to `http://localhost:5000/protected` without a token, returning a `403 Forbidden` error)*
-> **[INSERT YOUR SCREENSHOT 3 HERE]**
-
-### How to Run Locally
+### Running the Application
 1. Navigate to the `EXP 6` directory.
 2. Ensure Maven is installed and run: `mvn clean compile` followed by `mvn spring-boot:run`.
 3. The server will start on `http://localhost:5000`.
+
+### Screenshots
+* *(Add screenshot here: POST request to `http://localhost:5000/login` receiving the JWT token)*
+* *(Add screenshot here: GET request to `http://localhost:5000/protected` using the `Authorization: Bearer <token>` header)*
+* *(Add screenshot here: GET request to `http://localhost:5000/protected` without a token, returning a `403 Forbidden` error)*
+
+---
+
+## EXPERIMENT 7: Role-Based Access Control (RBAC) in Spring Boot
+
+### Objectives
+1. Implement authentication and authorization in Spring Boot.
+2. Restrict API access using roles (`ROLE_USER`, `ROLE_ADMIN`).
+3. Configure Spring Security for secured endpoints.
+4. Test protected APIs using Postman.
+5. Understand the difference between `401 Unauthorized` and `403 Forbidden`.
+
+### Description
+This experiment focuses on implementing Role-Based Authorization (RBAC) in a Spring Boot backend. It restricts API access based on assigned user roles to demonstrate proper endpoint protection. The application enforces that normal users can only access permitted endpoints, admins can access admin-only endpoints, and unauthorized requests are blocked correctly.
+
+### Technologies Used
+* Java 17+ & Maven
+* Spring Boot (Spring Web, Spring Security, Spring Data JPA)
+* H2 In-Memory Database
+* Postman (API Testing)
+
+### Features Implemented
+* **User Authentication:** HTTP Basic Auth or session-based login using Spring Security.
+* **Database & Entities:** `User` and `Role` entities stored in an H2 Database.
+* **Protected Endpoints:**
+  * `GET /api/public/hello` (Accessible to everyone, no auth required)
+  * `GET /api/user/profile` (Accessible to users with `USER` or `ADMIN` roles)
+  * `GET /api/admin/dashboard` (Accessible **only** to users with the `ADMIN` role)
