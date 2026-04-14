@@ -19,7 +19,6 @@ This repository contains a series of experiments demonstrating modern frontend d
 ---
 
 ## EXPERIMENT 1: Modern Frontend Frameworks and SPA Development
-
 ### Objectives
 1. Understand modern frontend frameworks and SPA architecture
 2. Set up development environment with Node.js and npm
@@ -33,27 +32,19 @@ This repository contains a series of experiments demonstrating modern frontend d
 This experiment introduces React as a modern frontend framework and demonstrates how to build a Single Page Application (SPA). The application uses reusable components, manages state efficiently, and integrates external APIs for dynamic content. The SPA architecture enables seamless navigation without page reloads, improving performance and user experience.
 
 ### Technologies Used
-* React.js
+* React.js, Vite
 * Node.js & npm
-* JavaScript (ES6+)
-* HTML5 & CSS3
-* Vite
+* JavaScript (ES6+), HTML5 & CSS3
 * Vercel (Deployment)
 
 ### Features Implemented
 * Component-based architecture
 * React Hooks (`useState`, `useEffect`)
-* API data fetching
-* SPA navigation & Responsive UI
-* Deployment on Vercel
-
-### Learning Outcomes
-* Understanding SPA architecture
+* API data fetching & SPA navigation
 
 ---
 
 ## EXPERIMENT 5: Advanced State Management, Context API, and Performance Optimization
-
 ### Objectives
 1. Learn structured, scalable state management using **Redux Toolkit**.
 2. Use **Context API** for app-wide concerns (e.g., theme, auth, or profile).
@@ -61,7 +52,7 @@ This experiment introduces React as a modern frontend framework and demonstrates
 4. Extend a multi-page React app while maintaining consistent UI/UX.
 
 ### Description
-Building upon previous experiments, this update enhances the existing application by replacing standard state management with Redux Toolkit for complex data flows. It introduces a global Context API for overarching app properties and utilizes `useMemo` to prevent unnecessary re-rendering of derived data computations. Additionally, a new dedicated page is integrated using React Router to demonstrate these combined features.
+Building upon previous experiments, this update enhances the existing application by replacing standard state management with Redux Toolkit for complex data flows. It introduces a global Context API for overarching app properties and utilizes `useMemo` to prevent unnecessary re-rendering of derived data computations. 
 
 ### Technologies & Concepts Used
 * **Redux Toolkit:** `configureStore`, `createSlice`, `useDispatch`, `useSelector`
@@ -69,67 +60,53 @@ Building upon previous experiments, this update enhances the existing applicatio
 
 ---
 
-## EXPERIMENT 6: Backend Security and JWT Authentication
-
+## EXPERIMENT 8: Frontend Integration with JWT Authentication
 ### Objectives
-1. Implement JWT (JSON Web Token) Authentication in a backend application.
-2. Manage user sessions statelessly using Spring Security.
-3. Understand how to use Postman for testing authentication processes and API endpoints.
-4. Learn about session management and cryptographic token validation in web applications.
+1. Build a modern React frontend UI that consumes Spring Boot JWT APIs.
+2. Implement strict session-based authentication using `sessionStorage`.
+3. Restrict UI access to protected pages based on the user's login state.
+4. Establish clean API call architecture using Axios.
 
 ### Description
-This experiment transitions from frontend development to backend security by implementing a robust Authentication and Authorization system using Spring Boot (Java). The application features a custom `JwtFilter` middleware that intercepts incoming HTTP requests. 
-
-For testing and demonstration purposes, the `/login` route bypasses strict database validation—accepting any credentials—to immediately generate and sign an HMAC-SHA JWT token. This token must then be passed as a `Bearer` token in the `Authorization` header to successfully access the `/protected` route, demonstrating stateless session management.
+This experiment bridges the gap between the frontend UI and the secure backend built in Experiment 6. The application leverages **Material UI (MUI)** for polished form components and **Bootstrap** for responsive grid layouts. It features a robust Authentication Flow: upon successful login, a JWT is stored locally in `sessionStorage`. A custom `ProtectedRoute` wrapper is implemented to guard internal routes, ensuring only authenticated users can view sensitive dashboard data.
 
 ### Technologies Used
-* Java 17+ & Maven
-* Spring Boot 3 (Spring Web, Spring Data JPA)
-* Spring Security 6+ (Stateless SecurityFilterChain)
-* JJWT (0.11.2) (JSON Web Token library)
-* H2 Database (In-memory database)
-* Postman (API Testing)
+* React.js (Vite)
+* React Router DOM (v6)
+* Material UI (MUI) & Bootstrap
+* Axios (HTTP Client)
 
 ### Features Implemented
-* **Stateless Authentication:** Server runs on Port 5000 with a strictly stateless session policy.
-* **Token Generation:** `JwtUtil` class to generate and sign JWTs upon a `POST` request to `/login`.
-* **Middleware Interception:** `JwtFilter` implementation to extract and validate tokens from request headers.
-* **Route Protection:** Public access granted to `/login` and `/h2-console`, while `/protected` requires a valid cryptographic token.
+* Secure Login Interface with MUI styling.
+* `sessionStorage` manipulation for token management.
+* High-Order Components (HOC) for protected routing.
+* State-driven conditional redirects (Unauthorized users sent to `/login`).
+* Logout functionality that clears session data completely.
 
-### Running the Application
-1. Navigate to the `EXP 6` directory.
-2. Ensure Maven is installed and run: `mvn clean compile` followed by `mvn spring-boot:run`.
-3. The server will start on `http://localhost:5000`.
-
-### Screenshots
-* *(Add screenshot here: POST request to `http://localhost:5000/login` receiving the JWT token)*
-* *(Add screenshot here: GET request to `http://localhost:5000/protected` using the `Authorization: Bearer <token>` header)*
-* *(Add screenshot here: GET request to `http://localhost:5000/protected` without a token, returning a `403 Forbidden` error)*
+### 📸 Execution Screenshots
+> **[INSERT SCREENSHOT 1: Login UI]** > **[INSERT SCREENSHOT 2: Token stored in sessionStorage (DevTools)]** > **[INSERT SCREENSHOT 3: Access protected API (data visible on UI)]** > **[INSERT SCREENSHOT 4: Unauthorized access handling (redirect to login)]** > **[INSERT SCREENSHOT 5: Logout functionality]**
 
 ---
 
-## EXPERIMENT 7: Role-Based Access Control (RBAC) in Spring Boot
-
+## EXPERIMENT 9: Role-Based Access Control (RBAC) UI Implementation
 ### Objectives
-1. Implement authentication and authorization in Spring Boot.
-2. Restrict API access using roles (`ROLE_USER`, `ROLE_ADMIN`).
-3. Configure Spring Security for secured endpoints.
-4. Test protected APIs using Postman.
-5. Understand the difference between `401 Unauthorized` and `403 Forbidden`.
+1. Build a React frontend that securely integrates with a Spring Boot RBAC backend.
+2. Store and manage multifaceted session data (both Token and Role).
+3. Dynamically hide/show UI components based on the active user role (`USER` vs `ADMIN`).
+4. Enforce strict route protection to prevent URL-bypassing.
 
 ### Description
-This experiment focuses on implementing Role-Based Authorization (RBAC) in a Spring Boot backend. It restricts API access based on assigned user roles to demonstrate proper endpoint protection. The application enforces that normal users can only access permitted endpoints, admins can access admin-only endpoints, and unauthorized requests are blocked correctly.
+Experiment 9 elevates the application's security posture by implementing dynamic Authorization. The frontend now parses role-based data upon login and adjusts the entire user experience accordingly. An **Axios Interceptor** automates the attachment of `Bearer` tokens to every outgoing request. 
+
+The UI features intelligent rendering: standard users only see the User Dashboard and are actively blocked (with HTTP 403 handling) if they attempt to navigate to Admin-exclusive routes. Administrators are granted full visibility, including an exclusive Admin Panel.
 
 ### Technologies Used
-* Java 17+ & Maven
-* Spring Boot (Spring Web, Spring Security, Spring Data JPA)
-* H2 In-Memory Database
-* Postman (API Testing)
+* React.js (Vite) & React Router DOM
+* Axios (with Interceptors)
+* Material UI (Snackbars, Cards, Navigation) & Bootstrap
 
 ### Features Implemented
-* **User Authentication:** HTTP Basic Auth or session-based login using Spring Security.
-* **Database & Entities:** `User` and `Role` entities stored in an H2 Database.
-* **Protected Endpoints:**
-  * `GET /api/public/hello` (Accessible to everyone, no auth required)
-  * `GET /api/user/profile` (Accessible to users with `USER` or `ADMIN` roles)
-  * `GET /api/admin/dashboard` (Accessible **only** to users with the `ADMIN` role)
+* **Role Extraction:** Capturing and storing `ADMIN` or `USER` roles in `sessionStorage`.
+* **Dynamic Navigation:** Navbar items conditionally render based on the current session role.
+* **Granular Route Guards:** `AdminRoute` wrappers that explicitly check for `ADMIN` clearance.
+* **Error Handling:** Elegant interception of `403 Forbidden` responses displaying Material UI alerts.
