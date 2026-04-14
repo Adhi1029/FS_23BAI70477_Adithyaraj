@@ -1,0 +1,63 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   index.css  –  Global baseline styles for Experiment 8
+   All component-level styling lives in the individual JSX files via MUI's sx
+   prop.  This file is intentionally minimal.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Google Inter font via @import (fallback when @fontsource not installed) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+/* ── Reset & base ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: #0f0c29;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ── Utility: remove default list styling ────────────────────────────────── */
+ul, ol {
+  list-style: none;
+}
+
+/* ── Scrollbar styling ───────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 77, 255, 0.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 77, 255, 0.7);
+}
+
+/* ── Smooth MUI transitions ──────────────────────────────────────────────── */
+.MuiCard-root,
+.MuiButton-root,
+.MuiChip-root {
+  transition: all 0.3s ease !important;
+}
