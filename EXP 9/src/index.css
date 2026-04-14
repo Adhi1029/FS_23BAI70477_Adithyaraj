@@ -1,0 +1,215 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   index.css  |  EXP 9 – RBAC React Frontend
+   Global design tokens, gradient backgrounds, card polish, and animations.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-dark:        #0a0e1a;
+  --bg-card:        rgba(255, 255, 255, 0.06);
+  --bg-glass:       rgba(255, 255, 255, 0.10);
+  --border-glass:   rgba(255, 255, 255, 0.15);
+  --accent-blue:    #5b8dee;
+  --accent-purple:  #9b59f7;
+  --accent-cyan:    #38d9f5;
+  --accent-admin:   #ff6b6b;
+  --text-primary:   #eef2ff;
+  --text-muted:     #94a3b8;
+  --gradient-hero:  linear-gradient(135deg, #0a0e1a 0%, #111827 50%, #0f172a 100%);
+  --gradient-accent: linear-gradient(135deg, #5b8dee, #9b59f7);
+  --gradient-admin:  linear-gradient(135deg, #ff6b6b, #f7931e);
+  --shadow-glow:    0 0 40px rgba(91, 141, 238, 0.20);
+  --radius-card:    16px;
+  --radius-btn:     10px;
+  --transition:     all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--gradient-hero);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Animated gradient background orbs ───────────────────────────────────── */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  animation: float 12s ease-in-out infinite;
+}
+body::before {
+  width: 500px; height: 500px;
+  background: var(--accent-blue);
+  top: -100px; left: -100px;
+}
+body::after {
+  width: 400px; height: 400px;
+  background: var(--accent-purple);
+  bottom: -80px; right: -80px;
+  animation-delay: -6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, 20px) scale(1.05); }
+}
+
+/* ── Glass Card Utility ──────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-glow), 0 24px 48px rgba(0,0,0,0.35);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Page wrapper ─────────────────────────────────────────────────────────── */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Navbar Override ─────────────────────────────────────────────────────── */
+.app-navbar {
+  background: rgba(10, 14, 26, 0.85) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 0.8rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-navbar .navbar-brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.app-navbar .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+}
+
+.app-navbar .nav-link:hover {
+  color: var(--text-primary) !important;
+  background: var(--bg-glass);
+}
+
+.app-navbar .nav-link.active {
+  color: var(--accent-cyan) !important;
+}
+
+/* ── Role Badge ──────────────────────────────────────────────────────────── */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.role-badge-admin {
+  background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(247,147,30,0.2));
+  border: 1px solid rgba(255,107,107,0.4);
+  color: #ff6b6b;
+}
+
+.role-badge-user {
+  background: linear-gradient(135deg, rgba(91,141,238,0.2), rgba(155,89,247,0.2));
+  border: 1px solid rgba(91,141,238,0.4);
+  color: var(--accent-blue);
+}
+
+/* ── Stat Card ───────────────────────────────────────────────────────────── */
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.stat-card:hover { transform: translateY(-3px); }
+
+.stat-card-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* ── MUI Override helpers ─────────────────────────────────────────────────── */
+.MuiTextField-root .MuiOutlinedInput-root {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--text-primary) !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root {
+  color: var(--text-muted) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-glass) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent-blue) !important;
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(91,141,238,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(91,141,238,0.6); }
+}
+
+.animate-slide-up { animation: slideUp 0.5s ease forwards; }
+.animate-fade-in  { animation: fadeIn 0.4s ease forwards; }
+
+/* ── Scrollbar polish ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 3px; }
