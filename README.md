@@ -107,10 +107,7 @@ This experiment shifts to backend development. A Spring Boot REST API is constru
 * JJWT (JSON Web Token Library)
 * Postman (API Testing)
 
-### 📸 Execution Screenshots
-> **[INSERT POSTMAN SCREENSHOT 1: Successful login & receiving JWT]**
-> **[INSERT POSTMAN SCREENSHOT 2: Accessing protected route via JWT]**
-> **[INSERT POSTMAN SCREENSHOT 3: Logout/Token invalidation attempt]**
+
 
 ---
 
@@ -127,11 +124,6 @@ Building on backend security, this experiment introduces granular authorization.
 * Spring Boot Security (RBAC configurations)
 * Postman (Multi-role testing)
 
-### 📸 Execution Screenshots
-> **[INSERT POSTMAN SCREENSHOT 1: Login request with valid credentials]**
-> **[INSERT POSTMAN SCREENSHOT 2: USER accessing user endpoint]**
-> **[INSERT POSTMAN SCREENSHOT 3: USER denied access to ADMIN endpoint (403)]**
-> **[INSERT POSTMAN SCREENSHOT 4: ADMIN successfully accessing ADMIN endpoint]**
 
 ---
 
@@ -149,12 +141,7 @@ This experiment connects the React frontend to the Spring Boot backend. A login 
 * `sessionStorage`
 * Bootstrap & Material UI
 
-### 📸 Execution Screenshots
-> **[INSERT SCREENSHOT 1: Login UI]**
-> **[INSERT SCREENSHOT 2: Token stored in sessionStorage (DevTools)]**
-> **[INSERT SCREENSHOT 3: Access protected API (Data visible on UI)]**
-> **[INSERT SCREENSHOT 4: Unauthorized access handling (Redirect to login)]**
-> **[INSERT SCREENSHOT 5: Logout functionality]**
+
 
 ---
 
