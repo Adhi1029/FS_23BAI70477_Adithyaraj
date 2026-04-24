@@ -5,7 +5,7 @@
 **Course:** Full Stack Development Lab  
 **Repository:** [FS_23BAI70477_Adithyaraj](https://github.com/Adhi1029/FS_23BAI70477_Adithyaraj)  
 
-This repository contains a comprehensive series of experiments demonstrating modern Full Stack development. It transitions from frontend Single Page Application (SPA) architecture using React, UI libraries, and advanced state management, to secure backend API development using Spring Boot with JWT Authentication and Role-Based Access Control (RBAC).
+This repository contains a comprehensive series of experiments demonstrating modern Full Stack development. It transitions from frontend Single Page Application (SPA) architecture using React, UI libraries, and advanced state management, to secure backend API development using Spring Boot with JWT Authentication and Role-Based Access Control (RBAC), and finally to Node.js/MongoDB REST APIs.
 
 ---
 
@@ -157,3 +157,35 @@ The final experiment implements complete frontend authorization. Upon login, bot
 ### Technologies Used
 * React.js, Axios Interceptors
 * Conditional Rendering & Route Guards
+
+
+---
+
+## EXPERIMENT 10: Node.js & MongoDB CRUD REST API
+### Objectives
+1. Build REST APIs using Node.js and Express.js.
+2. Connect the backend with a NoSQL database (MongoDB).
+3. Perform Create, Read, Update, Delete (CRUD) operations via Mongoose.
+4. Understand backend routing, controllers, and strict schema validation.
+
+### Description
+This experiment diversifies the backend stack by implementing a fully functional REST API using Node.js and Express.js. The API interfaces with a MongoDB database using Mongoose for object modeling. It performs robust CRUD operations on a `Student` model, featuring advanced error handling, strict schema validation, and proper HTTP status code management (200, 201, 400, 404, 500).
+
+### Technologies Used
+* Node.js, Express.js
+* MongoDB, Mongoose
+* CORS, Nodemon
+* Postman (Testing)
+
+### API Documentation
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/students` | Creates a new student record in the database. |
+| `GET` | `/api/students` | Retrieves an array of all student records. |
+| `GET` | `/api/students/:id` | Retrieves a single student record by their MongoDB ID. |
+| `PUT` | `/api/students/:id` | Updates an existing student record by ID. |
+| `DELETE` | `/api/students/:id` | Deletes a student record by ID. |
+
+> **[INSERT SCREENSHOT 4: Update Record Success (Postman)]**
+> **[INSERT SCREENSHOT 5: Delete Record Success (Postman)]**
+> **[INSERT SCREENSHOT 6: Database Collection View (MongoDB Compass / Atlas)]**
